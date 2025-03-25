@@ -15,8 +15,10 @@ library(cluster)
 library(factoextra)
 library(gridExtra)
 # library(monier)
-library(randomForest)
-library(reprtree)
+# library(randomForest)
+# library(reprtree)
+library(rpart)
+library(rpart.plot)
 # library(devtools)
 # install_github("araastat/reprtree")
 
@@ -170,7 +172,7 @@ rpart.plot(model_shape)
 dev.off()
 # rpart.plot(rf_model_shape)
 accuracy_shape <- sum(predicted_shape == shape_test[,which(names(shape_test) == "label")])*100/dim(shape_test)[1] 
-cat("Accuracy of the Random Forest model:", accuracy_shape, "%\n")
+cat("Accuracy of the Random Forest model:", round(accuracy_shape, 2), "%\n")
 
 #RANDOM FOREST MODEL (ensemble)
 model_ens<-rpart(as.factor(label) ~ ., data = ens_train)
@@ -182,6 +184,6 @@ pdf("tree_ens.pdf")
 rpart.plot(model_ens)
 dev.off()
 accuracy_ens <- sum(predicted_ens == ens_test[,which(names(ens_test) == "label")]) * 100/dim(ens_test)[1] 
-cat("Accuracy of the Random Forest model:", accuracy_ens, "%\n")
+cat("Accuracy of the Random Forest model:", round(accuracy_ens, 2), "%\n")
 
 
