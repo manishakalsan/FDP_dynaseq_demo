@@ -7,6 +7,6 @@ Order to run the scripts:
 
 dynaseq_cmd.R
 
-visualize.R
+visualization.R
 
 shape_models.R
